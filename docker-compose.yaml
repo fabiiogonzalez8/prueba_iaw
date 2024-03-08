@@ -13,7 +13,7 @@ services:
 
   crud:
     container_name: crud
-    image: fabiiogonzalez8/examen:7
+    image: fabiiogonzalez8/examen:9
     restart: always
     environment:
       DB_HOST: servidor_examen
