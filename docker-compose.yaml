@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  servidor_examen:
+    container_name: servidor_examen
+    image: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_USER: fabio
+      MARIADB_PASSWORD: usuario
+      MARIADB_DATABASE: examen
+    volumes:
+      - mariadb_examen:/var/lib/mysql
+
+  crud:
+    container_name: crud
+    image: fabiiogonzalez8/examen:v1
+    restart: always
+    environment:
+      DB_HOST: servidor_examen
+      DB_NAME: examen
+      DB_USER: fabio
+      DB_PASSWORD: usuario
+      BASE_URL: http://192.168.121.150:8888/
+    ports:
+      - 8888:80
+    depends_on:
+      - servidor_examen
+
+volumes:
+  mariadb_examen:
